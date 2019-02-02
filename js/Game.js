@@ -3,7 +3,7 @@
  * @constructor
  * @param {number} misses - Tracks the number of missed guesses by the player. Initial values is 0.
  * @param {array} phrases - Array of five Phrase objects to use with the game. 
- * @param {string} activePhrase -  Phrase object that’s currently in play. Initial value is null.
+ * @param {object} activePhrase -  Phrase object that’s currently in play. Initial value is null.
  */
 
  class Game {
@@ -39,12 +39,19 @@
 
      /**
       * Setter method for phrase.
-      * @param {string} - Phrase string
+      * @param {object} - Phrase object
       * @returns {void}
       */
+     setActivePhrase(phraseObj) {
+        this._activePhrase = phraseObj;
+     }
 
-     setActivePhrase(phrase) {
-        this._activePhrase = phrase;
+     /**
+      * Getter method for activePhrase
+      * @returns {object} - Phrase object
+      */
+     getActivePhrase() {
+         return this._activePhrase;
      }
 
      /**
@@ -52,7 +59,11 @@
       * @returns {void}
       */
      startGame() {
-
+        this.hideOverlay();
+        const phrase = this.getRandomPhrase();
+        this.setActivePhrase = new Phrase(phrase);
+        const phraseObj = this.getActivePhrase();
+        phraseObj.addPhraseToDisplay();
      }
 
      /**
@@ -96,5 +107,14 @@
       */
      gameOver() {
 
+     }
+
+     /**
+      * Hides the overlay on the HTML
+      * @returns {void}
+      */
+     hideOverlay() {
+         const overlay = document.getElementById("overlay");
+         overlay.style.display = "none";
      }
  }
