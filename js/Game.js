@@ -61,7 +61,7 @@
      startGame() {
         this.hideOverlay();
         const phrase = this.getRandomPhrase();
-        this.setActivePhrase = new Phrase(phrase);
+        this.setActivePhrase(new Phrase(phrase));
         const phraseObj = this.getActivePhrase();
         phraseObj.addPhraseToDisplay();
      }
