@@ -30,8 +30,8 @@ class Phrase {
      * @param {string} - Character
      * @returns {boolean} - if the phrase contains the letter
      */
-    checkLetter() {
-
+    checkLetter(character) {
+        return this.getPhrase().includes(character);
     }
 
     /**
