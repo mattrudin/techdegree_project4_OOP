@@ -7,7 +7,7 @@
  */
 
  class Game {
-     constructor(missed = 0, phrases, activePhrase = null) {
+     constructor(phrases, missed = 0, activePhrase = null) {
         this._missed = missed;
         this._phrases = phrases;
         this._activePhrase = activePhrase;
