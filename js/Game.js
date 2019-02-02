@@ -56,11 +56,14 @@
      }
 
      /**
-      * Gets a random phrase of the _phrases array and sets _activePhrase.
-      * @returns {void}
+      * Gets a random phrase of the _phrases array.
+      * @returns {string} - Random phrase
       */
      getRandomPhrase() {
-
+        const phraseArr = this.getPhrases();
+        const phraseArrLen = phraseArr.length;
+        const randomNumber = Math.floor(Math.random() * phraseArrLen);
+        return phraseArr[randomNumber];
      }
 
      /**
