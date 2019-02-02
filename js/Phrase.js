@@ -11,7 +11,7 @@ class Phrase {
 
     /**
      * Getter method for _phrase.
-     * @returns {string} - Phrase
+     * @returns {string} _phrase
      */
     getPhrase() {
         return this._phrase;
@@ -24,12 +24,14 @@ class Phrase {
     addPhraseToDisplay() {
         const phrase = this.getPhrase();
         const list = this.formatPhraseToList(phrase);
+        const div = document.getElementById("phrase");
+        div.appendChild(list);
     }
 
     /**
      * Checks if the given letter is matched within the phrase
-     * @param {string} - Character
-     * @returns {boolean} - if the phrase contains the letter
+     * @param {string} character
+     * @returns {boolean} if the phrase contains the letter
      */
     checkLetter(character) {
         return this.getPhrase().includes(character);
@@ -43,12 +45,22 @@ class Phrase {
         
     }
 
+    /**
+     * Formats the input string to a list element
+     * @param {string} phrase 
+     * @returns {nodeObject} formated list
+     */
     formatPhraseToList(phrase) {
         const phraseArr = phrase.split("");
-        const li = phraseArr.reduce((acc, char) => 
-            char === " " 
-            ? acc + `<li class="space"> </li>` 
-            : acc + `<li class="hide letter ${char}">${char}</li>`, "");
-        return li;
+        let ul = document.createElement('ul');
+        for(let i = 0; i < phraseArr.length; i++) {
+            const letter = phraseArr[i];
+            const className = letter === " " ? `space` : `hide letter ${letter}`;
+            let li = document.createElement('li');
+            li.className = className;
+            li.textContent = letter;
+            ul.appendChild(li);
+        }
+        return ul;
     }
 }

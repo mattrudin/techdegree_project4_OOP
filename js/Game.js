@@ -31,7 +31,7 @@
 
      /**
       * Getter method for _phrases.
-      * @returns {array} - Phrases array
+      * @returns {array} Phrases array
       */
      getPhrases() {
         return this._phrases;
@@ -39,7 +39,7 @@
 
      /**
       * Setter method for phrase.
-      * @param {object} - Phrase object
+      * @param {object} phraseObj
       * @returns {void}
       */
      setActivePhrase(phraseObj) {
@@ -48,7 +48,7 @@
 
      /**
       * Getter method for activePhrase
-      * @returns {object} - Phrase object
+      * @returns {object} Phrase object
       */
      getActivePhrase() {
          return this._activePhrase;
@@ -68,7 +68,7 @@
 
      /**
       * Gets a random phrase of the _phrases array.
-      * @returns {string} - Random phrase
+      * @returns {string} Random phrase
       */
      getRandomPhrase() {
         const phraseArr = this.getPhrases();
