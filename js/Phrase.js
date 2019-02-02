@@ -23,14 +23,7 @@ class Phrase {
      */
     addPhraseToDisplay() {
         const phrase = this.getPhrase();
-        const phraseArr = phrase.split("");
-        const start = `<div id="phrase" class="section"> <ul>`;
-        const end = `</ul> </div>`;
-        let li = phraseArr.reduce((acc, char) => 
-            char === " " 
-            ? acc + `<li class="space"> </li>` 
-            : acc + `<li class="hide letter ${char}">${char}</li>`, start);
-        li += end;
+        const list = this.formatPhraseToList(phrase);
     }
 
     /**
@@ -48,5 +41,14 @@ class Phrase {
      */
     showMatchedLetter() {
         
+    }
+
+    formatPhraseToList(phrase) {
+        const phraseArr = phrase.split("");
+        const li = phraseArr.reduce((acc, char) => 
+            char === " " 
+            ? acc + `<li class="space"> </li>` 
+            : acc + `<li class="hide letter ${char}">${char}</li>`, "");
+        return li;
     }
 }
