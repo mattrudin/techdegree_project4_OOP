@@ -14,21 +14,37 @@
      }
 
      /**
-      * Getter method for _phrases
-      * @returns {array} - Phrases array
+      * Increases _missed attribute by 1.
+      * @returns {void}
       */
-     getPhrases() {
-
+     increaseMissed() {
+         this._missed ++;
      }
 
      /**
-      * Setter method for phrase
+      * Getter method for _missed.
+      * @returns {number}
+      */
+     getMissed() {
+         return this._missed;
+     }
+
+     /**
+      * Getter method for _phrases.
+      * @returns {array} - Phrases array
+      */
+     getPhrases() {
+        return this._phrases;
+     }
+
+     /**
+      * Setter method for phrase.
       * @param {string} - Phrase string
       * @returns {void}
       */
 
-     setActivePhrase() {
-
+     setActivePhrase(phrase) {
+        this._activePhrase = phrase;
      }
 
      /**
