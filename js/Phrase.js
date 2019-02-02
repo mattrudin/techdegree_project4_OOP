@@ -10,6 +10,14 @@ class Phrase {
     }
 
     /**
+     * Getter method for _phrase.
+     * @returns {string} - Phrase
+     */
+    getPhrase() {
+        return this._phrase;
+    }
+
+    /**
      * Adds the phrase to the HTML file
      * @returns {void}
      */
