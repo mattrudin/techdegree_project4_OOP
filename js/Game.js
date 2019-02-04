@@ -82,10 +82,13 @@
       * @returns {void}
       */
      handleInteraction(event) {
-        const letter = event.target.textContent; 
+        const letter = event.target.textContent;
+        const phrase = this.getActivePhrase();
+
         this.disableElement(event);
-        if(this.getActivePhrase().checkLetter(letter)) {
+        if(phrase.checkLetter(letter)) {
             this.addClassToElement(event, 'chosen');
+            phrase.showMatchedLetter(letter);
         } else {
             this.addClassToElement(event, 'wrong');
             this.removeLife();
@@ -137,6 +140,10 @@
         event.target.classList.add(className);
      }
 
+     /**
+      * Disables the given element
+      * @param {Object} event Event obj
+      */
      disableElement(event) {
         event.target.setAttribute('disabled', 'disabled');
      }

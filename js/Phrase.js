@@ -41,8 +41,13 @@ class Phrase {
      * Reveals the matched letters on the HTML file
      * @returns {void}
      */
-    showMatchedLetter() {
-        
+    showMatchedLetter(letter) {
+        const letters = document.getElementsByClassName(`${letter}`);
+        for(let i = 0; i < letters.length; i++) {
+            const letterClassList = letters[i].classList;
+            letterClassList.remove('hide');
+            letterClassList.add('show');
+        }
     }
 
     /**
