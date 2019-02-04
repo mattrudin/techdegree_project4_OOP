@@ -126,6 +126,7 @@
         this.addClassToOverlay(outcome);
         this.resetHearts();
         this.getActivePhrase().resetLetters();
+        this.resetKeyboard();
         if(outcome === 'win') {
             this.changeTitle(`Yeah, you won! Bet you don't win another one?`)
         } else {
@@ -187,8 +188,17 @@
         }
      }
 
+     /**
+      * Resets the onscreen keyboard
+      * @returns {void}
+      */
      resetKeyboard() {
-
+        const keys = document.getElementsByClassName('key');
+        for(let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            key.className = 'key';
+            key.removeAttribute('disabled');
+        }
      }
 
 
