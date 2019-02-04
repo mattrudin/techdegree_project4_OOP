@@ -42,7 +42,11 @@ class Phrase {
         const phrase = this.getPhrase();
         const list = this.formatPhraseToList(phrase);
         const div = document.getElementById("phrase");
-        div.appendChild(list);
+        if(div.firstElementChild) {
+            div.firstChild.remove();
+        } else {
+            div.appendChild(list);
+        }
     }
 
     /**
@@ -94,6 +98,10 @@ class Phrase {
         return ul;
     }
 
+    /**
+     * Resets all Letter divs to 'hide'
+     * @returns {void}
+     */
     resetLetters() {
         const letters = document.getElementsByClassName(`letter`);
         for(let i = 0; i < letters.length; i++) {
