@@ -86,7 +86,7 @@
             this.addClassToElement(letter, 'chosen');
         } else {
             this.addClassToElement(letter, 'wrong');
-            this.increaseMissed();
+            this.removeLife();
         }
      }
 
@@ -95,7 +95,9 @@
       * @returns {void}
       */
      removeLife() {
-
+         this.increaseMissed()
+         this.changePictureSrc();
+         if(this.getMissed() >= 5) this.gameOver();
      }
 
      /**
@@ -111,7 +113,7 @@
       * @returns {void}
       */
      gameOver() {
-
+        console.log('game over');
      }
 
      /**
@@ -134,5 +136,12 @@
         for(let i = 0; i < keys.length; i++) {
             keys[i].textContent === letter && keys[i].classList.add(className);
         }
+     }
+
+     changePictureSrc() {
+         const hearts = document.getElementsByClassName('tries');
+         const heartsLength = hearts.length;
+         const missed = this.getMissed();
+         hearts[heartsLength - missed].firstChild.src='images/lostHeart.png';
      }
  }
