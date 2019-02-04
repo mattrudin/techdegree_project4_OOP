@@ -42,6 +42,7 @@ class Phrase {
         const phrase = this.getPhrase();
         const list = this.formatPhraseToList(phrase);
         const div = document.getElementById("phrase");
+
         if(!!div.firstElementChild) div.firstElementChild.remove();
         div.appendChild(list);
     }
@@ -61,6 +62,7 @@ class Phrase {
      */
     showMatchedLetter(letter) {
         const letters = document.getElementsByClassName(`${letter}`);
+
         for(let i = 0; i < letters.length; i++) {
             const letterClassList = letters[i].classList;
             letterClassList.remove('hide');
@@ -76,6 +78,7 @@ class Phrase {
     formatPhraseToList(phrase) {
         const phraseArr = phrase.split("");
         let ul = document.createElement('ul');
+        
         for(let i = 0; i < phraseArr.length; i++) {
             const letter = phraseArr[i];
             let className;

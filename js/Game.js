@@ -79,6 +79,7 @@
 
      /**
       * Controls game logic
+      * @param {Object} event Event Object
       * @returns {void}
       */
      handleInteraction(event) {
@@ -86,6 +87,7 @@
         const phrase = this.getActivePhrase();
 
         this.disableElement(event);
+
         if(phrase.checkLetter(letter)) {
             this.addClassToElement(event, 'chosen');
             phrase.showMatchedLetter(letter);
@@ -103,6 +105,7 @@
      removeLife() {
          this.increaseMissed()
          this.removeHeart();
+
          if(this.getMissed() >= 5) this.gameOver('lose');
      }
 
@@ -126,6 +129,7 @@
         this.addClassToOverlay(outcome);
         this.resetHearts();
         this.resetKeyboard();
+
         if(outcome === 'win') {
             this.changeTitle(`Yeah, you won! Bet you don't win another one?`)
         } else {
@@ -135,6 +139,7 @@
 
      /**
       * Changes the overlay on the HTML ('flex' or 'none')
+      * @param {String} display Display property
       * @returns {void}
       */
      changeOverlay(display) {
@@ -142,6 +147,11 @@
          overlay.style.display = display;
      }
 
+     /**
+      * Adds a given class to the overlay element
+      * @param {String} className 
+      * @returns {void}
+      */
      addClassToOverlay(className) {
         const overlay = document.getElementById("overlay");
         overlay.className = className;
@@ -159,7 +169,7 @@
 
      /**
       * Disables the given element
-      * @param {Object} event Event obj
+      * @param {Object} event Event object
       */
      disableElement(event) {
         event.target.setAttribute('disabled', 'disabled');
@@ -182,6 +192,7 @@
       */
      resetHearts() {
         const hearts = document.getElementsByClassName('tries');
+        
         for(let i = 0; i < hearts.length; i++) {
             hearts[i].firstChild.src = 'images/liveHeart.png';
         }
@@ -193,6 +204,7 @@
       */
      resetKeyboard() {
         const keys = document.getElementsByClassName('key');
+
         for(let i = 0; i < keys.length; i++) {
             const key = keys[i];
             key.className = 'key';

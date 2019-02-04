@@ -1,6 +1,4 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * app.js */
+// Phrases array. Can be changed.
 const phrases = [
     `Hello you`,
     `How are you`,
@@ -9,14 +7,17 @@ const phrases = [
     `I dont like java`
 ]
 
+// Game instance
 let game;
 
+// EventListener for the start button
 const startButton = document.getElementById('btn__reset');
 startButton.addEventListener('click', () => {
     game = new Game(phrases);
     game.startGame();
 })
 
+// EventListener for the onScreen keyboard
 const keyboard = document.getElementById('qwerty');
 keyboard.addEventListener('click', event => {
     const letter = event.target.textContent; 
