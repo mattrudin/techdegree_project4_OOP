@@ -14,18 +14,10 @@
      }
 
      /**
-      * Increases _missed attribute by 1.
-      * @returns {void}
-      */
-     increaseMissed() {
-         this._missed ++;
-     }
-
-     /**
       * Getter method for _missed.
       * @returns {number}
       */
-     getMissed() {
+     get missed() {
          return this._missed;
      }
 
@@ -33,7 +25,7 @@
       * Getter method for _phrases.
       * @returns {array} Phrases array
       */
-     getPhrases() {
+     get phrases() {
         return this._phrases;
      }
 
@@ -42,7 +34,7 @@
       * @param {object} phraseObj
       * @returns {void}
       */
-     setActivePhrase(phraseObj) {
+     set activePhrase(phraseObj) {
         this._activePhrase = phraseObj;
      }
 
@@ -50,7 +42,7 @@
       * Getter method for activePhrase
       * @returns {object} Phrase object
       */
-     getActivePhrase() {
+     get activePhrase() {
          return this._activePhrase;
      }
 
@@ -61,8 +53,8 @@
      startGame() {
         this.changeOverlay('none');
         const phrase = this.getRandomPhrase();
-        this.setActivePhrase(new Phrase(phrase));
-        const phraseObj = this.getActivePhrase();
+        this.activePhrase = new Phrase(phrase);
+        const phraseObj = this.activePhrase;
         phraseObj.addPhraseToDisplay();
      }
 
@@ -71,7 +63,7 @@
       * @returns {string} Random phrase
       */
      getRandomPhrase() {
-        const phraseArr = this.getPhrases();
+        const phraseArr = this.phrases;
         const phraseArrLen = phraseArr.length;
         const randomNumber = Math.floor(Math.random() * phraseArrLen);
         return phraseArr[randomNumber];
@@ -84,7 +76,7 @@
       */
      handleInteraction(event) {
         const letter = event.target.textContent;
-        const phrase = this.getActivePhrase();
+        const phrase = this.activePhrase;
 
         this.disableElement(event);
 
@@ -106,7 +98,7 @@
          this.increaseMissed()
          this.removeHeart();
 
-         if(this.getMissed() >= 5) this.gameOver('lose');
+         if(this.missed >= 5) this.gameOver('lose');
      }
 
      /**
@@ -115,7 +107,7 @@
       */
      checkForWin() {
         const lettersLength = document.getElementsByClassName('show').length;
-        const letterCounter = this.getActivePhrase().getLetterCounter();
+        const letterCounter = this.activePhrase.letterCounter;
         return lettersLength === letterCounter;
      }
 
@@ -182,7 +174,7 @@
      removeHeart() {
          const hearts = document.getElementsByClassName('tries');
          const heartsLength = hearts.length;
-         const missed = this.getMissed();
+         const missed = this.missed;
          hearts[heartsLength - missed].firstChild.src = 'images/lostHeart.png';
      }
 
@@ -212,7 +204,6 @@
         }
      }
 
-
      /**
       * Changes the h2 title at the overlay screen
       * @param {String} titleName 
@@ -222,4 +213,12 @@
          const title = document.getElementById('game-over-message');
          title.textContent = titleName;
      }
+
+     /**
+      * Increases _missed attribute by 1.
+      * @returns {void}
+      */
+     increaseMissed() {
+        this._missed ++;
+    }
  }

@@ -14,7 +14,7 @@ class Phrase {
      * Getter method for _phrase.
      * @returns {string} _phrase
      */
-    getPhrase() {
+    get phrase() {
         return this._phrase;
     }
 
@@ -22,16 +22,8 @@ class Phrase {
      * Getter method for _letterCounter.
      * @returns {number} _letterCounter
      */
-    getLetterCounter() {
+    get letterCounter() {
         return this._letterCounter;
-    }
-
-    /**
-      * Increases _letterCounter attribute by 1.
-      * @returns {void}
-      */
-    increaseLetterCounter() {
-        this._letterCounter ++;
     }
 
     /**
@@ -39,7 +31,7 @@ class Phrase {
      * @returns {void}
      */
     addPhraseToDisplay() {
-        const phrase = this.getPhrase();
+        const phrase = this.phrase;
         const list = this.formatPhraseToList(phrase);
         const div = document.getElementById("phrase");
 
@@ -53,7 +45,7 @@ class Phrase {
      * @returns {boolean} if the phrase contains the letter
      */
     checkLetter(character) {
-        return this.getPhrase().includes(character);
+        return this.phrase.includes(character);
     }
 
     /**
@@ -96,5 +88,13 @@ class Phrase {
             ul.appendChild(li);
         }
         return ul;
+    }
+
+    /**
+      * Increases _letterCounter attribute by 1.
+      * @returns {void}
+      */
+     increaseLetterCounter() {
+        this._letterCounter ++;
     }
 }
