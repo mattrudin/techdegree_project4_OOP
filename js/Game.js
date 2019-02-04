@@ -89,7 +89,7 @@
         if(phrase.checkLetter(letter)) {
             this.addClassToElement(event, 'chosen');
             phrase.showMatchedLetter(letter);
-            if(this.checkForWin()) this.gameOver('win');
+            this.checkForWin() && this.gameOver('win');
         } else {
             this.addClassToElement(event, 'wrong');
             this.removeLife();
@@ -102,7 +102,7 @@
       */
      removeLife() {
          this.increaseMissed()
-         this.changePictureSrc();
+         this.removeHeart();
          if(this.getMissed() >= 5) this.gameOver('lose');
      }
 
@@ -124,6 +124,8 @@
      gameOver(outcome) {
         this.changeOverlay('flex');
         this.addClassToOverlay(outcome);
+        this.resetHearts();
+        this.getActivePhrase().resetLetters();
         if(outcome === 'win') {
             this.changeTitle(`Yeah, you won! Bet you don't win another one?`)
         } else {
@@ -167,12 +169,28 @@
       * Changes the picture source of the hearts image
       * @returns {void}
       */
-     changePictureSrc() {
+     removeHeart() {
          const hearts = document.getElementsByClassName('tries');
          const heartsLength = hearts.length;
          const missed = this.getMissed();
-         hearts[heartsLength - missed].firstChild.src='images/lostHeart.png';
+         hearts[heartsLength - missed].firstChild.src = 'images/lostHeart.png';
      }
+
+     /**
+      * Resets hearts to initial state (all hearts as liveHearts)
+      * @returns {void}
+      */
+     resetHearts() {
+        const hearts = document.getElementsByClassName('tries');
+        for(let i = 0; i < hearts.length; i++) {
+            hearts[i].firstChild.src = 'images/liveHeart.png';
+        }
+     }
+
+     resetKeyboard() {
+
+     }
+
 
      /**
       * Changes the h2 title at the overlay screen

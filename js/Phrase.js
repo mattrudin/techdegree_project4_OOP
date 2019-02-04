@@ -86,11 +86,20 @@ class Phrase {
                 className = `hide letter ${letter}`;
                 this.increaseLetterCounter();
             }
-            
+
             li.className = className;
             li.textContent = letter;
             ul.appendChild(li);
         }
         return ul;
+    }
+
+    resetLetters() {
+        const letters = document.getElementsByClassName(`letter`);
+        for(let i = 0; i < letters.length; i++) {
+            const letterClassList = letters[i].classList;
+            letterClassList.remove('show');
+            letterClassList.add('hide');
+        }
     }
 }
