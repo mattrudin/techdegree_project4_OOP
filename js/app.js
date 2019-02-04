@@ -20,5 +20,5 @@ startButton.addEventListener('click', () => {
 const keyboard = document.getElementById('qwerty');
 keyboard.addEventListener('click', event => {
     const letter = event.target.textContent; 
-    if(letter.length === 1) game.handleInteraction(letter);
+    if(letter.length === 1) game.handleInteraction(event);
 })

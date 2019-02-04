@@ -81,11 +81,13 @@
       * Controls game logic
       * @returns {void}
       */
-     handleInteraction(letter) {
-        if(this._activePhrase.checkLetter(letter)) {
-            this.addClassToElement(letter, 'chosen');
+     handleInteraction(event) {
+        const letter = event.target.textContent; 
+        this.disableElement(event);
+        if(this.getActivePhrase().checkLetter(letter)) {
+            this.addClassToElement(event, 'chosen');
         } else {
-            this.addClassToElement(letter, 'wrong');
+            this.addClassToElement(event, 'wrong');
             this.removeLife();
         }
      }
@@ -131,13 +133,18 @@
       * @param {String} className 
       * @returns {void}
       */
-     addClassToElement(letter, className) {
-        const keys = document.getElementsByClassName('key');
-        for(let i = 0; i < keys.length; i++) {
-            keys[i].textContent === letter && keys[i].classList.add(className);
-        }
+     addClassToElement(event, className) {
+        event.target.classList.add(className);
      }
 
+     disableElement(event) {
+        event.target.setAttribute('disabled', 'disabled');
+     }
+
+     /**
+      * Changes the picture source of the hearts image
+      * @returns {void}
+      */
      changePictureSrc() {
          const hearts = document.getElementsByClassName('tries');
          const heartsLength = hearts.length;
