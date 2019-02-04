@@ -89,6 +89,7 @@
         if(phrase.checkLetter(letter)) {
             this.addClassToElement(event, 'chosen');
             phrase.showMatchedLetter(letter);
+            this.checkForWin();
         } else {
             this.addClassToElement(event, 'wrong');
             this.removeLife();
@@ -110,7 +111,9 @@
       * @returns {boolean}
       */
      checkForWin() {
-
+        const lettersLength = document.getElementsByClassName('show').length;
+        const letterCounter = this.getActivePhrase().getLetterCounter();
+        return lettersLength === letterCounter;
      }
 
      /**

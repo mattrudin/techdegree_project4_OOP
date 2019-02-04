@@ -7,6 +7,7 @@
 class Phrase {
     constructor(phrase) {
         this._phrase = phrase.toLowerCase();
+        this._letterCounter = 0;
     }
 
     /**
@@ -15,6 +16,22 @@ class Phrase {
      */
     getPhrase() {
         return this._phrase;
+    }
+
+    /**
+     * Getter method for _letterCounter.
+     * @returns {number} _letterCounter
+     */
+    getLetterCounter() {
+        return this._letterCounter;
+    }
+
+    /**
+      * Increases _letterCounter attribute by 1.
+      * @returns {void}
+      */
+    increaseLetterCounter() {
+        this._letterCounter ++;
     }
 
     /**
@@ -60,8 +77,16 @@ class Phrase {
         let ul = document.createElement('ul');
         for(let i = 0; i < phraseArr.length; i++) {
             const letter = phraseArr[i];
-            const className = letter === " " ? `space` : `hide letter ${letter}`;
+            let className;
             let li = document.createElement('li');
+
+            if(letter === " ") {
+                className = `space`;
+            } else {
+                className = `hide letter ${letter}`;
+                this.increaseLetterCounter();
+            }
+            
             li.className = className;
             li.textContent = letter;
             ul.appendChild(li);
