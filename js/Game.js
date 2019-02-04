@@ -124,6 +124,11 @@
      gameOver(outcome) {
         this.changeOverlay('flex');
         this.addClassToOverlay(outcome);
+        if(outcome === 'win') {
+            this.changeTitle(`Yeah, you won! Bet you don't win another one?`)
+        } else {
+            this.changeTitle(`Sorry, you lost. Wanna try another one?`)
+        }
      }
 
      /**
@@ -137,7 +142,7 @@
 
      addClassToOverlay(className) {
         const overlay = document.getElementById("overlay");
-        overlay.style.className = className;
+        overlay.className = className;
      }
 
      /**
@@ -167,5 +172,15 @@
          const heartsLength = hearts.length;
          const missed = this.getMissed();
          hearts[heartsLength - missed].firstChild.src='images/lostHeart.png';
+     }
+
+     /**
+      * Changes the h2 title at the overlay screen
+      * @param {String} titleName 
+      * @returns {void}
+      */
+     changeTitle(titleName) {
+         const title = document.getElementById('game-over-message');
+         title.textContent = titleName;
      }
  }
