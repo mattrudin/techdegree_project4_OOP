@@ -42,11 +42,8 @@ class Phrase {
         const phrase = this.getPhrase();
         const list = this.formatPhraseToList(phrase);
         const div = document.getElementById("phrase");
-        if(div.firstElementChild) {
-            div.firstChild.remove();
-        } else {
-            div.appendChild(list);
-        }
+        if(!!div.firstElementChild) div.firstElementChild.remove();
+        div.appendChild(list);
     }
 
     /**
@@ -96,18 +93,5 @@ class Phrase {
             ul.appendChild(li);
         }
         return ul;
-    }
-
-    /**
-     * Resets all Letter divs to 'hide'
-     * @returns {void}
-     */
-    resetLetters() {
-        const letters = document.getElementsByClassName(`letter`);
-        for(let i = 0; i < letters.length; i++) {
-            const letterClassList = letters[i].classList;
-            letterClassList.remove('show');
-            letterClassList.add('hide');
-        }
     }
 }

@@ -125,7 +125,6 @@
         this.changeOverlay('flex');
         this.addClassToOverlay(outcome);
         this.resetHearts();
-        this.getActivePhrase().resetLetters();
         this.resetKeyboard();
         if(outcome === 'win') {
             this.changeTitle(`Yeah, you won! Bet you don't win another one?`)
