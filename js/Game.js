@@ -59,7 +59,7 @@
       * @returns {void}
       */
      startGame() {
-        this.hideOverlay();
+        this.changeOverlay('none');
         const phrase = this.getRandomPhrase();
         this.setActivePhrase(new Phrase(phrase));
         const phraseObj = this.getActivePhrase();
@@ -89,7 +89,7 @@
         if(phrase.checkLetter(letter)) {
             this.addClassToElement(event, 'chosen');
             phrase.showMatchedLetter(letter);
-            this.checkForWin();
+            if(this.checkForWin()) this.gameOver('win');
         } else {
             this.addClassToElement(event, 'wrong');
             this.removeLife();
@@ -103,7 +103,7 @@
      removeLife() {
          this.increaseMissed()
          this.changePictureSrc();
-         if(this.getMissed() >= 5) this.gameOver();
+         if(this.getMissed() >= 5) this.gameOver('lose');
      }
 
      /**
@@ -118,19 +118,26 @@
 
      /**
       * Shows a winner or looser screen
+      * @param {String} outcome win or lose
       * @returns {void}
       */
-     gameOver() {
-        console.log('game over');
+     gameOver(outcome) {
+        this.changeOverlay('flex');
+        this.addClassToOverlay(outcome);
      }
 
      /**
-      * Hides the overlay on the HTML
+      * Changes the overlay on the HTML ('flex' or 'none')
       * @returns {void}
       */
-     hideOverlay() {
+     changeOverlay(display) {
          const overlay = document.getElementById("overlay");
-         overlay.style.display = "none";
+         overlay.style.display = display;
+     }
+
+     addClassToOverlay(className) {
+        const overlay = document.getElementById("overlay");
+        overlay.style.className = className;
      }
 
      /**
